@@ -76,6 +76,7 @@ def create_path(level,path,endIndex):
 def set_targets(ghost,level): #ustala cel podróży ducha
     if ghost.color=="red": #w przypadku czerwonego ducha jest to dokładna pozycja gracza
         ghost.target=(level.player.x,level.player.y)
+        
     elif ghost.color=="pink": #...różowy natomiast stara się być parę kroków przed.
         if level.player.dir%4==0:
             ghost.target=(level.player.x+2,level.player.y)
@@ -85,6 +86,20 @@ def set_targets(ghost,level): #ustala cel podróży ducha
             ghost.target=(level.player.x-2,level.player.y)
         elif level.player.dir%4==3:
             ghost.target=(level.player.x,level.player.y+2)
+            
+    elif ghost.color=="blue": #duch niebieski tworzy wektor od pozycji ducha czerwonego do jego celu
+        redGhost=level.ghosts[0]
+        x=redGhost.x
+        y=redGhost.y
+        vx=redGhost.targetNode.x-x
+        vy=redGhost.targetNode.y-y
+        ghost.target=(x+2*vx,y+2*vy)  #...i podwaja jego długość
+        
+    if ghost.color=="orange": #zachowanie ducha pomarańczowego zależy od jego ogległości od Pacmana
+        distance=((ghost.x-level.player.x)**2+(ghost.y-level.player.y)**2)**(0.5)
+        if distance>=8:  #jak jest daleko to idzie w kierunku Pacmana
+            ghost.target=(level.player.x,level.player.y)
+        else:ghost.target=(0,20) #jak jest blisko, to ucieka do dolnego lewego narożnika
     ghost.endLock.acquire()
     ghost.targetNode=level.closestNode(ghost.target[0],ghost.target[1]) #znajduje węzeł najbliższy podanemu x i y
     ghost.endLock.release()

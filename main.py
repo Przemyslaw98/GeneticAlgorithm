@@ -11,7 +11,7 @@ from variables import *
 class Game(arcade.Window):
     def setup(self):
         arcade.set_background_color([0,0,0])
-        self.level=Level("level2.txt")
+        self.level=Level("level.txt")
         #planners=[]
         #for ghost in self.level.ghosts:
             #planner=threading.Thread(target=plan_move,args=(self.level,ghost))
@@ -26,6 +26,9 @@ class Game(arcade.Window):
                     nodes.append(self.level.nodes[i])
                 for node in nodes:
                     node.draw(ghost.nodeSprite)
+        if DRAW_TARGETS==1:
+            for ghost in self.level.ghosts:
+                ghost.drawNode()
         for tile in self.level.tiles:
             if self.level.tiles[tile].type!="space" and self.level.tiles[tile].type!="loop":
                 self.level.tiles[tile].draw()

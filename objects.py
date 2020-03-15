@@ -64,14 +64,25 @@ class Ghost:
             self.sprites.append(arcade.Sprite("graphics/gpd.png",1))
             self.nodeSprite=arcade.Sprite("graphics/gpn.png",1)
             self.targetSprite=arcade.Sprite("graphics/gpt.png",1)
+        elif self.color=="orange":
+            self.sprites.append(arcade.Sprite("graphics/gor.png",1))
+            self.sprites.append(arcade.Sprite("graphics/gou.png",1))
+            self.sprites.append(arcade.Sprite("graphics/gol.png",1))
+            self.sprites.append(arcade.Sprite("graphics/god.png",1))
+            self.nodeSprite=arcade.Sprite("graphics/gon.png",1)
+            self.targetSprite=arcade.Sprite("graphics/got.png",1)
+        elif self.color=="blue":
+            self.sprites.append(arcade.Sprite("graphics/gbr.png",1))
+            self.sprites.append(arcade.Sprite("graphics/gbu.png",1))
+            self.sprites.append(arcade.Sprite("graphics/gbl.png",1))
+            self.sprites.append(arcade.Sprite("graphics/gbd.png",1))
+            self.nodeSprite=arcade.Sprite("graphics/gbn.png",1)
+            self.targetSprite=arcade.Sprite("graphics/gbt.png",1)
     def draw(self):
         self.sprites[self.dir].center_x=self.x*32+16+self.move_x
         self.sprites[self.dir].center_y=768-(self.y*32+16+self.move_y)
         self.sprites[self.dir].draw()
     def drawNode(self):
-        self.nodeSprite.center_x=self.nextNode.x*32+16
-        self.nodeSprite.center_y=768-(self.nextNode.y*32+16)
-        self.nodeSprite.draw()
         self.targetSprite.center_x=self.targetNode.x*32+16
         self.targetSprite.center_y=768-(self.targetNode.y*32+16)
         self.targetSprite.draw()

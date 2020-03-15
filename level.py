@@ -31,8 +31,10 @@ class Level:
 ##                    self.dotNumber+=1
                 elif char=="^":
                     self.tiles[(x,y)]=Space(x,y)
-                    self.ghosts.append(Ghost(x,y,"pink"))
                     self.ghosts.append(Ghost(x,y,"red"))
+                    self.ghosts.append(Ghost(x,y,"pink"))
+                    self.ghosts.append(Ghost(x,y,"blue"))
+                    self.ghosts.append(Ghost(x,y,"orange"))
                 elif char=="e":
                     self.tiles[(x,y)]=Space(x,y)
                     self.player=Pacman(x,y)
